@@ -1,0 +1,394 @@
+html {
+	background-image:url(../../backgrnd.jpg);
+	background-repeat:repeat-xy;
+}
+body {
+ 	position: absolute;
+	font-family: sans-serif;
+	font-size: 80%;
+	background: #ffe;
+	background-image:url(../../smallbgrnd.png);
+	background-repeat:repeat-xy;
+	color:#FFFFCC;
+	margin: 0;
+	left: 9%;
+	margin-right: auto;
+	width: 80%;
+	text-align: left;
+	border: 2px solid #900;
+
+
+    border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+	}
+a {
+	color: #FC0;
+}
+a:hover {
+	color:#DD0000;
+}
+a.quotejs {
+color:#DD0000;
+text-decoration: none;
+}
+a.quotejs:hover {
+font-weight:bold;
+left: -100%;
+}
+.reflink a:hover{
+	font-weight: bold;
+}
+.logo {
+	text-align:center;
+	font-family: Trebuchet MS,Arial,sans-serif;
+	font-size:3.6em;
+	color:#FF0000;
+}
+.replymode {
+	background: #900;
+	text-align:center;
+	font-size: 1.5em;
+	padding:4px;
+	color:#FFFFFF;
+	border:2px solid #000;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+.oldpost {
+	color:#CC1105;
+	font-weight:800;
+}
+.omittedposts {
+	color:#707070;
+}
+.reply {
+	background: #121212;
+	background-image:url(../../menubg.jpg);
+	background-repeat:repeat-xy;
+	color: #C7CC99;
+    	border:2px solid #620002;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 3px;
+}
+.postarea {
+}
+
+.replyhl {
+	background: #333333;
+	color: #ffffff;
+}
+.doubledash {
+ 	vertical-align:top;
+	clear:both;
+	float:left;
+}
+.replytitle {
+	font-size: 1.2em;
+	color: #BD2424;
+	font-weight:400;
+}
+.commentpostername {
+	color:#117743;
+	font-weight:800;
+}
+.thumbnailmsg {
+	font-size: small;
+	color:#800000;
+}
+.abbrev {
+	color:#707070;
+}
+.highlight {
+	background:#370404;
+	color:#FFFFFF;
+	border: 3px dashed #C03;
+	background-image:url(../imgs/highlight_post_bg.jpg);
+	background-repeat:repeat-xy;
+}
+#watchedthreads {
+	margin-top: 75px;
+	background-color: #6A0003; !important;
+	border: 3px dotted #F00;
+}
+.reflinkpreview {
+	background-color: #0A0A0A; !important;
+	border: 2px dotted #900;
+}
+hr {
+  border: 0;
+  color: #333;
+  background-color: #333;
+  height: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 3px;
+}
+.row1 {
+	background:#EEEECC;
+	color:#800000;
+}
+.row2 {
+	background:#9696AA;
+	color:#800000;
+}
+.unkfunc {
+	background:inherit;
+	color:#789922;
+}
+.filesize {
+	text-decoration:none;
+	font-size:9px;
+	background: #2F0000;
+	color: #B41212;
+	padding:1px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 1px;
+	margin-left: 20px;
+}
+.filetitle {
+	background:inherit;
+	font-size:1.4em;
+	color: #FF7533;
+	font-weight:800;
+}
+.postername {
+	color:#117743;
+	font-weight:bold;
+}
+.postertrip {
+	color:#228854;
+}
+.catalogmode {
+	background:#0040E0;
+	font-size: 1.5em;
+	border:2px solid #000;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	text-align:center;
+	padding:4px;
+	color:#FFFFFF;
+	margin-bottom: 3px;
+}
+.inputbox {
+	font-family: sans-serif;
+	background:#000;
+	background-image:url(../imgs/input_boxes_bg.jpg);
+	background-repeat:repeat-xy;
+	color:#FFFFFF;
+	border:2px solid #900;
+	border-radius: 2px 2px 2px 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+.rules {
+	color: #FFF;
+	border:1px solid #900;
+	border-radius: 7px 7px 7px 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding: 5px;
+	background:#000;
+	width: 468px;
+	font-size: 10px;
+	font-family: sans-serif;
+	/* for IE */
+    filter:alpha(opacity=70);
+    /* CSS3 standard */
+    opacity:0.7;
+}
+.postblock {
+	background:#850707;
+	width: 100px;
+	border:1px solid #D90000;
+	color:#FFFFFF;
+	padding:3px;
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 2px;
+}
+.passvalid {
+	background:#969688;
+	text-align:center;
+	width:100%;
+	color:#ffffff;
+}
+.footer {
+	text-align:center;
+	font-size:12px;
+}
+.rules li {
+	margin-left: 1em;
+	/*text-indent: 0em;*/
+}
+#topmenu li {
+	display: block;
+	float: left;
+	border: 1px solid #888;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left: none;
+	margin-top: -7px;
+	background-color: #FDB;
+}
+
+#topmenu li.first {
+	border-left: 1px solid #888;
+}
+
+#topmenu li.current {
+	margin-top: -8px;
+	padding-top: 5px;
+	border-bottom: none;
+	background-color: #fca;
+}
+
+h2 {
+	margin-top: 0px;
+	background: #000;
+	font-size: 100%;
+	padding: 1px 5px 1px 5px;
+}
+
+h2 a {
+	text-decoration: none;
+	color:#848A71;
+}
+
+h1, h3, .menu {
+	font-family: Verdana,Tahoma,sans-serif;
+}
+
+h1 {
+	margin: 0;
+	color: #800;
+	text-align: center;
+	margin-top: 1em;
+}
+
+h3 {
+	margin: 0;
+	color: #800;
+	text-align: center;
+	font-weight: normal;
+	font-size: medium;
+}
+
+.menu {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.content {
+	margin-left: 3em;
+	text-align: justify;
+	padding-left: 4px;
+}
+
+.newssub {
+	position: absolute;
+}
+
+.permalink {
+	text-align: right;
+	display: block;
+}
+
+.permalink a {
+	color: blue;
+	text-decoration: none;
+}
+
+/*Drop Down Menu CSS*/
+
+.menubartop {
+	background-color: #900;
+	width:100%;
+	margin-top: -6px;
+}
+
+#sddm
+{	margin: 0;
+	padding: 0;
+	z-index: 30;
+	}
+
+#sddm li
+{	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	font: 11px sans-serif;
+	}
+
+#sddm li a
+{	display: block;
+	margin: 0 1px 0 0;
+	padding: 4px 10px;
+	width: 110px;
+	background: #900;
+	border: 1px solid #d00;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none;
+	}
+
+#sddm li a:hover
+{	background: #d00}
+
+#sddm div
+{	position: absolute;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	background: #900;
+	border: 1px solid #d00;
+	}
+
+	#sddm div a
+	{	position: relative;
+		display: block;
+		margin: 0;
+		padding: 4px 8px;
+		width: auto;
+		white-space: nowrap;
+		text-align: left;
+		text-decoration: none;
+		background: #900;
+		color: #FC0;
+		font: 11px arial;
+		}
+
+	#sddm div a:hover
+	{	background: #d00;
+		color: #FC0}
+/*Banned tpl*/
+
+ .bannedlargemsg
+	{
+	color: #FF1515;
+	font-size: 10em;
+	text-align: center;
+	margin-top: 10px;
+	}
+ .bannedh1 {
+	color: #FF1515;
+	font-size: 2.8em;
+	text-align: center;
+	background:#000;
+	border:2px solid #900;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding:3px;
+	}
+	.banreason {
+	color: #FF1515;
+	font-size: 1.8em;
+	}
+	.banimages {
+	border:2px solid #900;
+	}

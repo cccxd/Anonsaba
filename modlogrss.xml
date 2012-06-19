@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+<title>Anonsaba - Modlog</title>
+<link>http://www.anonsaba.org</link>
+<description>Live view of all moderative actions on http://www.anonsaba.org</description>
+<language>en</language>
+	<item>
+	<title>Fri 08/05 21:42</title>
+	<description><![CDATA[grumpy - Logged in]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 21:41</title>
+	<description><![CDATA[grumpy - Ran cleanup]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 21:41</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=77&board=img">77</a> (1  replies) - /img/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 21:18</title>
+	<description><![CDATA[Liath - Rebuilt all boards and threads]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 21:10</title>
+	<description><![CDATA[Liath - Logged in]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 21:07</title>
+	<description><![CDATA[grumpy - Ran cleanup]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:55</title>
+	<description><![CDATA[grumpy - Added a news entry]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:52</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=5&board=test">5</a> (0  replies) - /test/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:39</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=4&board=test">4</a> (0  replies) - /test/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:38</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=3&board=test">3</a> (0  replies) - /test/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:29</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=2&board=test">2</a> (0  replies) - /test/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:28</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=2&board=test">2</a> (0  replies) - /test/]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:24</title>
+	<description><![CDATA[grumpy - Rebuilt all boards and threads]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:24</title>
+	<description><![CDATA[Liath - Rebuilt all boards and threads]]></description>
+	</item>
+	<item>
+	<title>Fri 08/05 20:22</title>
+	<description><![CDATA[grumpy - Deleted thread #<a href="?action=viewthread&thread=1&board=test">1</a> (0  replies) - /test/]]></description>
+	</item>
+
+</channel>
+</rss>

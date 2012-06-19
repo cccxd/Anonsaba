@@ -1,0 +1,89 @@
+body,html {
+background-color:#EEF2FF;
+background-image:url('blue-grad.png');
+background-repeat: repeat-x;
+background-position:top;
+}
+
+a {
+color:#3A3B3F;
+text-decoration:none;
+}
+
+h1 {
+color:#2a4665;
+text-shadow: 1px 2px 2px #888;
+}
+
+
+h3 {
+border-bottom: 1px dashed #C5C8D2;
+}
+
+h4 {
+background-color:#D6DAF0;
+}
+
+h6 {
+color:#2a4665;
+text-shadow: 1px 2px 2px #888;
+}
+
+section#recent {
+background-color:#f1f1fa;
+border:1px solid #C5C8D2;
+}
+
+section#recent section#posts li {
+border-bottom:1px solid #E6EBFA;
+}
+
+section#recent section#posts li:nth-child(even) {
+background-color: #FFF;
+}
+section#news {
+background-color:#e6ebfa;
+border-bottom:1px solid #C5C8D2;
+border-left:1px solid #C5C8D2;
+border-right:1px solid #C5C8D2;
+}
+
+section#news header {
+background-color:#D6DAF0;
+border-top:1px solid #C5C8D2;
+border-bottom:1px solid #C5C8D2;
+}
+
+section#news header ul li {
+border-right: 1px solid #C5C8D2;
+border-bottom: 1px solid #C5C8D2;
+}
+
+section#news header ul li.selected {
+background-color:#e6ebfa;
+border-bottom: 1px solid transparent;
+}
+
+section#boardlist {
+background-color:#e6ebfa;
+border:1px solid #C5C8D2;
+}
+
+section#boardlist li:hover {
+background: #C6DAF0;
+}
+
+div.wrap.hfix .lcol {
+border:1px solid #C5C8D2;
+}
+
+div.wrap.hfix .rcol {
+border:1px solid #C5C8D2;
+}
+
+body > footer {
+background-color:#f1f1fa;
+border:1px solid #C5C8D2;
+}
+
+

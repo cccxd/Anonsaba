@@ -76,7 +76,7 @@ if (isset($_GET['info'])) {
 	<iframe src="<?php echo $menufile; ?>" name="menu" id="menu">
 		<a href="<?php echo KU_WEBPATH . '/' . $menufile; ?>"><?php echo KU_NAME; ?></a>
 	</iframe>
-	<iframe src="news.php" name="main" id="main">
+	<iframe src="mainpage.php" name="main" id="main">
 		<a href="<?php echo KU_WEBPATH;?>/news.php"><?php echo KU_NAME; ?> Navigation</a>
 	</iframe>
 </body>

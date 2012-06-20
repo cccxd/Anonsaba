@@ -1,0 +1,19 @@
+body {
+	
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+}
+
+h1 {
+font-family: Verdana;
+font-size: 4em;
+letter-spacing: -0.1em;
+margin: .25em 0 0;
+text-shadow: 1px 2px 2px  #888;
+}
+
+h2{
+text-shadow: 0px 1px 1px  #888;
+font-family: Verdana;
+letter-spacing: -0.1em;
+}
+

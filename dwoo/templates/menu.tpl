@@ -16,6 +16,7 @@
 <script type="text/javascript"><!--
 			var style_cookie_site = "kustyle_site";
 		//--></script>
+<link rel="stylesheet" type="text/css" href="{%KU_WEBFOLDER}css/mainpage.css">
 <link rel="shortcut icon" href="{%KU_WEBFOLDER}favicon.ico" />
 <script type="text/javascript" src="{%KU_WEBFOLDER}lib/javascript/gettext.js"></script>
 <script type="text/javascript" src="{%KU_WEBFOLDER}lib/javascript/menu.js"></script>

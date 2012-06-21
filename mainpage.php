@@ -32,10 +32,7 @@
 	$limit = 5; // How many post you want to show
 	$disallowedboard = ''; //Boards you rather not show recent post in IE 'test'.. TODO:Make user able to add more than one board
 	//end configuration
-	if ($disallowedboard != '') {
-		$boardid = $tc_db->GetOne('SELECT `id` FROM `'.KU_DBPREFIX.'boards` WHERE `name` = "'.$disallowedboard.'"');
-	}
-	$query = $tc_db->GetAll('SELECT * FROM `'.KU_DBPREFIX.'posts` WHERE `IS_DELETED` = 0 ORDER BY `timestamp` DESC LIMIT '.$limit.'');
+	$query = $tc_db->GetAll('SELECT * FROM `'.KU_DBPREFIX.'posts` WHERE `IS_DELETED` = 0 and `boardname` != "'.$disallowedboard.'" ORDER BY `timestamp` DESC LIMIT '.$limit.'');
 	
 //last images
 	$lastimages = $tc_db->GetAll("SELECT p.id, p.file, p.file_type, x.parentid, b.name
@@ -44,7 +41,7 @@
 	ON p.boardid = b.id LEFT JOIN `posts` x ON p.id=x.id and p.boardid =x.boardid
 	WHERE p.IS_DELETED = 0 AND x.IS_DELETED = 0 
 	AND p.file_type IN ('gif', 'jpg', 'png') AND p.file_md5 != ''
-	AND b.name != '3' AND b.name != '".$disallowedboard."'
+	AND b.name != '".$disallowedboard."'
 	ORDER BY p.timestamp
 	DESC LIMIT 20");
 	$rrcount = 4;

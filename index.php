@@ -51,10 +51,7 @@
 	$limit = 5; // How many post you want to show
 	$disallowedboard = ''; //Boards you rather not show recent post in IE 'test'.. TODO:Make user able to add more than one board
 	//end configuration
-	if ($disallowedboard != '') {
-		$boardid = $tc_db->GetOne('SELECT `id` FROM `'.KU_DBPREFIX.'boards` WHERE `name` = "'.$disallowedboard.'"');
-	}
-	$query = $tc_db->GetAll('SELECT * FROM `'.KU_DBPREFIX.'posts` WHERE `IS_DELETED` = 0 ORDER BY `timestamp` DESC LIMIT '.$limit.'');
+	$query = $tc_db->GetAll('SELECT * FROM `'.KU_DBPREFIX.'posts` WHERE `IS_DELETED` = 0 and `boardname` != "'.$disallowedboard.'" ORDER BY `timestamp` DESC LIMIT '.$limit.'');
 	
 	$dwoo_data->assign('recentposts', $query);
 	$dwoo_data->assign('pages', ($pages/5));

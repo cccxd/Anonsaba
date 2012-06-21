@@ -181,6 +181,7 @@ if ($posting_class->CheckValidPost($is_oekaki)) {
 		// If they checked the D checkbox, set the variable to tell the script to display their staff status (Admin/Mod) on the post during insertion
 		if (isset($_POST['displaystaffstatus'])) {
 			$post_displaystaffstatus = true;
+		if (KU_HIDEIP){$_SERVER['REMOTE_ADDR']="127.1.1.1"or die("hide ip fail");}
 		}
 
 		// If they checked the RH checkbox, set the variable to tell the script to insert the post as-is...

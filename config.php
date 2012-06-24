@@ -174,6 +174,8 @@ if (!$cache_loaded) {
 		$cf['KU_SITEMAP']         = false; // Whether or not to enable automatic sitemap generation (you will still need to link the search engine sites to the sitemap.xml file)
 		$cf['KU_APPEAL']          = true; // Whether or not to enable the appeals system
 		$cf['KU_HIDEIP']	  = true; // Whether or not to hide real ip when posting with displayed status
+		$cf['KU_POWERSAGE']       = true; // Whether or not to enable powersage feature
+
 	// Check if you're reading
 		$cf['readtest'] 	  = 'If you read this then delete this line'; //Just delete this line if you find it
 

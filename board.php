@@ -364,9 +364,38 @@ if ($posting_class->CheckValidPost($is_oekaki)) {
 			// And if the number of replies already in the thread are less than the maximum thread replies before perma-sage...
 			if ($thread_replies <= $board_class->board['maxreplies']) {
 				// Bump the thread
-				$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `bumped` = '" . time() . "' WHERE `boardid` = " . $board_class->board['id'] . " AND `id` = '" . $thread_replyto . "'");
-			}
+
+
+
+if (KU_POWERSAGE){	
+/*Copyright (C) 2010 Marcin "czaks" Łabanowski
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+
+	$uniqrepls = count($tc_db->GetAll($v = "SELECT COUNT(id) FROM `" . KU_DBPREFIX . "posts` WHERE `boardid` = " .
+					$board_class->board['id'] . ' AND `IS_DELETED` = 0 AND `parentid` = '.$thread_replyto.
+					' GROUP BY `ipmd5`'));
+			$sages = count($tc_db->GetAll("SELECT COUNT(id) FROM `" . KU_DBPREFIX . "posts` WHERE `boardid` = " . 
+					$board_class->board['id'] . ' AND `IS_DELETED` = 0 AND `parentid` = '.$thread_replyto.
+					' AND `email` = "sage" GROUP BY `ipmd5`'));
+			
+		if ($uniqrepls== 1 ){ $poster_ip=md5($_SERVER['REMOTE_ADDR']);
+					$op_ip= $tc_db->GetOne("SELECT `ipmd5` FROM `" . KU_DBPREFIX . "posts` WHERE `boardid` = " . 
+					$board_class->board['id'] . ' AND `IS_DELETED` = 0 AND `id` = '.$thread_replyto.' ')or die ("error");
+if ($poster_ip == $op_ip){$foreveralone=1;} 
 		}
+
+				if ($foreveralone != 1 && $sages/$uniqrepls < .4) {
+					$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `bumped` = '" . time() . "' WHERE `boardid` = " . $board_class->board['id'] . " AND `id` = '" . $thread_replyto . "'");
+				}}else{$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `bumped` = '" . time() . "' WHERE `boardid` = " . $board_class->board['id'] . " AND `id` = '" . $thread_replyto . "'");}
+			}}
+
 
 		// If the user replied to a thread he is watching, update it so it doesn't count his reply as unread
 		if (KU_WATCHTHREADS && $thread_replyto != '0') {

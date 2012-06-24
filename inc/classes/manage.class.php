@@ -228,25 +228,17 @@ class Manage {
 			return false;
 		}
 	}
-	function pms() {
+function pms() {
 		global $tc_db, $tpl_page;
 		$tpl_page .= '<h2>'. ('Private Messages') . '</h2><br />';
-		$pms = $tc_db->GetAll('SELECT `message` FROM `'.KU_DBPREFIX.'pms` WHERE `to` = "'.$_SESSION['manageusername'].'"');
-		$from = $tc_db->GetAll('SELECT `from` FROM `'.KU_DBPREFIX.'pms` WHERE `to` = "'.$_SESSION['manageusername'].'"');
 		$count = $tc_db->GetOne('SELECT COUNT(*) FROM `'.KU_DBPREFIX.'pms` WHERE `to` = "'.$_SESSION['manageusername'].'" AND `read` != 1');
-		$users = array();
+		$staff = array();
 		$userlist = $tc_db->GetAll('SELECT username FROM `'.KU_DBPREFIX.'staff` ORDER BY `username`');
 		foreach ($userlist as $result) {
-			$users[] = $result['username'];
+			$final .="  &nbsp;<a href='#' onclick='document.pms.to.value=\"".$result['username']."\";return false;'>".$result['username']."</a>";
 		}
-		$staff = array();
-		$stafflist = $tc_db->GetAll('SELECT username FROM `'.KU_DBPREFIX.'staff`');
-		foreach ($stafflist as $wat) {
-			$staff[] = $wat['username'];
-		}
-		$final = implode(', ', $users);
 		$tpl_page .='
-			<form action="manage_page.php?action=pms" method="post">
+			<form action="manage_page.php?action=pms" method="post" name="pms">
 			<label for="to">'. _gettext('To') . ':</label>';
 			if ($_GET['reply']) {
 				$sendto = $tc_db->GetOne('SELECT `from` FROM `'.KU_DBPREFIX.'pms` WHERE `id` = '.$tc_db->qstr($_GET['reply']).'');
@@ -1884,21 +1876,43 @@ class Manage {
 		global $tc_db, $tpl_page;
 		$this->AdministratorsOnly();
 		$tpl_page .= '<h2>'. _gettext('IP Address Search') .'</h2><br />'. "\n";
-		if (isset($_GET['ip']) && !empty($_GET['board'])) {
-			if ($_GET['board'] == 'all') {
-				$queryextra = "";
-			} else {
-				$queryextra = "`boardid` IN (" . $tc_db->GetOne("SELECT HIGH_PRIORITY `id` FROM `" . KU_DBPREFIX . "boards` WHERE `name` = " . $tc_db->qstr($_GET['board']) . "") . ") AND";
-			}
-			$results = $tc_db->GetAll("SELECT HIGH_PRIORITY " . KU_DBPREFIX . "posts.id AS id, " . KU_DBPREFIX . "posts.parentid AS parentid, " . KU_DBPREFIX . "posts.ip AS ip, " . KU_DBPREFIX . "posts.message AS message, " . KU_DBPREFIX . "post_files.file AS file, " . KU_DBPREFIX . "post_files.file_type AS file_type, " . KU_DBPREFIX . "boards.name AS boardname FROM " . KU_DBPREFIX . "posts, " . KU_DBPREFIX . "post_files, " . KU_DBPREFIX . "boards WHERE " . $queryextra . " ipmd5 = '" . md5($_GET['ip']) . "' AND " . KU_DBPREFIX . "posts.IS_DELETED = 0 AND ". KU_DBPREFIX ."post_files.IS_DELETED = 0 AND " . KU_DBPREFIX . "boards.id = " . KU_DBPREFIX . "posts.boardid AND " . KU_DBPREFIX . "post_files.id = " . KU_DBPREFIX . "posts.id AND " . KU_DBPREFIX . "post_files.boardid = " . KU_DBPREFIX . "posts.boardid ORDER BY posts.boardid");
-			if (count($results) > 0) {
-				foreach ($results as $line) {
-					$tpl_page .= '<table border="1" width="100%">'. "\n" .
-					'<tr><th width="10%">'. _gettext('Post Number') .'</th><th width="10%">'. _gettext('File') .'</th><th width="70%">'. _gettext('Message') .'</th><th width=10%">'. _gettext('IP Address') .'</th></tr>'. "\n";
-					$real_parentid = ($line['parentid'] == 0) ? $line['id'] : $line['parentid'];
-					$tpl_page .= '<tr><td><a href="'. KU_BOARDSPATH . '/'. $line['boardname'] . '/res/'. $real_parentid . '.html#'. $line['id'] . '">/'. $line['boardname'] . '/'. $line['id'] . '</td><td>'. (($line['file_type'] == 'jpg' || $line['file_type'] == 'gif' || $line['file_type'] == 'png') ? ('<a href="'. KU_WEBPATH .'/'. $line['boardname'] . '/src/'. $line['file'] . '.'. $line['file_type'] . '"><img border=0 src="'. KU_WEBPATH .'/'. $line['boardname'] . '/thumb/'. $line['file'] . 's.'. $line['file_type'] . '"></a>') : ('')) . '</td><td>'. $line['message'] . '</td><td>'. md5_decrypt($line['ip'], KU_RANDOMSEED) . '</tr>';
+		if (isset($_GET['ip']) && !empty($_GET['board'])) {			
+		$queryextra = $_GET['board'] == 'all' ? "" : "`boardname` ='".$_GET['board']."' AND";
+		$resultssearch = $tc_db->GetAll("SELECT * FROM `" . KU_DBPREFIX . "posts`  WHERE ".$queryextra. " ipmd5 = '" . md5($_GET['ip'])."'");
+		if (count($resultssearch) > 0) {
+			$tpl_page .= '<table border="1" width="100%"><tr><th>Board</th><th>Post</th><th>File</th><th>Message</th><th>IP</th></tr>';
+			foreach ($resultssearch as $linesearch) {
+				$searchboardid = $tc_db->GetOne("SELECT HIGH_PRIORITY `id` FROM `" . KU_DBPREFIX . "boards` WHERE `name` = " . $tc_db->qstr($linesearch['boardname']));
+				$results = $tc_db->GetAll('SELECT * FROM `' . KU_DBPREFIX . 'posts` WHERE `boardid` = ' . $searchboardid . ' AND `id` = ' . $tc_db->qstr($linesearch['id']));
+				foreach($results as $line) {
+					if ($line['IS_DELETED'] == 0) {
+						$tpl_page .= '<tr><td>/'. $linesearch['boardname'] . '/</td><td><a href="'. KU_BOARDSPATH . '/'. $linesearch['boardname'] . '/res/';
+						$tpl_page .= $line['parentid'] == '0' ? $linesearch['id'] : $line['parentid'];	
+						$post_threadorpost = $line['parentid'] == '0' ? 'thread' : 'post';
+						$tpl_page .= '.html#'. $linesearch['id'] . '">'. $line['id'] . '</a></td><td>';
+						$files = $tc_db->GetAll('SELECT * FROM `' . KU_DBPREFIX . 'post_files` WHERE `boardid` = ' . $searchboardid . ' AND `id` = ' . $tc_db->qstr($linesearch['id']));
+						if (!$files) { 	$tpl_page .= 'none'; }
+						foreach ($files as $lines) {
+							if ($lines['file'] == 'removed') {
+								$tpl_page .= 'removed';
+							} elseif ($lines['file_type'] == 'jpg' || $lines['file_type'] == 'gif' || $lines['file_type'] == 'png') {
+								$tpl_page .= '<a href="'. KU_BOARDSPATH . '/'. $linesearch['boardname'] . '/src/'. $lines['file'] . '.'. $lines['file_type'] . '"><img src="'. KU_BOARDSPATH . '/'. $linesearch['boardname'] . '/thumb/'. $lines['file'] . 's.'. $lines['file_type'] . '" border="0"></a>';
+							} else {
+								$tpl_page .= '<a href="'. KU_BOARDSPATH . '/'. $linesearch['boardname'] . '/src/'. $lines['file'] . '.'. $lines['file_type'] . '">File</a>';
+							}
+						}
+						$tpl_page .= '</td><td>';
+						if ($line['message'] != '') {
+							$tpl_page .= stripslashes($line['message']);
+						} else {
+							$tpl_page .= '&nbsp;';
+						}
+						
+						$tpl_page .= '</td><td>'. md5_decrypt($linesearch['ip'], KU_RANDOMSEED) . '</td></tr>';
+					}
 				}
-				$tpl_page .= '</table>'. "\n";
+			}
+			$tpl_page .= '</table>'. "\n";
 			} else {
 				$tpl_page .= _gettext('No results found for') .' '. $_GET['ip'] . '<br />'. "\n";
 			}

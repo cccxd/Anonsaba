@@ -2887,19 +2887,16 @@ class Manage {
 					if ($result > 0) {
 						if ($_GET['unsticky'] == 1) {
 							$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `stickied` = '0' WHERE `boardid` = " . $sticky_board_id . " AND `parentid` = '0' AND `id` = " . $tc_db->qstr($_GET['postid']) . "");
-							$board_class = new Board($sticky_board_name);
-							$board_class->RegenerateAll();
-							unset($board_class);
 							$tpl_page .= _gettext('Thread successfully unstickied.');
 							management_addlogentry(_gettext('Unstickied thread') . ' #' . intval($_GET['postid']) . ' - /' . $sticky_board_name . '/', 5);
 						} else {
 							$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `stickied` = '1' WHERE `boardid` = " . $sticky_board_id . " AND `parentid` = '0' AND `id` = " . $tc_db->qstr($_GET['postid']) . "");
-							$board_class = new Board($sticky_board_name);
-							$board_class->RegenerateAll();
-							unset($board_class);
 							$tpl_page .= _gettext('Thread successfully stickied.');
 							management_addlogentry(_gettext('Stickied thread') . ' #' . intval($_GET['postid']) . ' - /' . $sticky_board_name . '/', 5);
 						}
+						$board_class = new Board($sticky_board_name);
+						$board_class->RegenerateAll();
+						unset($board_class);
 					} else {
 						$tpl_page .= _gettext('Invalid thread ID. This may have been caused by the thread recently being deleted.');
 					}
@@ -2964,19 +2961,16 @@ class Manage {
 					if (count($results) > 0) {
 						if ($_GET['unlock'] == 1) {
 							$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `locked` = '0' WHERE `boardid` = " . $lock_board_id . " AND `parentid` = '0' AND `id` = " . $tc_db->qstr($_GET['postid']) . "");
-							$board_class = new Board($lock_board_name);
-							$board_class->RegenerateAll();
-							unset($board_class);
 							$tpl_page .= _gettext('Thread successfully unlocked.');
-							management_addlogentry(_gettext('Unlocked thread') . ' #'. intval($_GET['postid']) . ' - /'. intval($_GET['board']) . '/', 5);
+							management_addlogentry(_gettext('Unlocked thread') . ' #'. intval($_GET['postid']) . ' - /'. $_GET['board'] . '/', 5);
 						} else {
 							$tc_db->Execute("UPDATE `" . KU_DBPREFIX . "posts` SET `locked` = '1' WHERE `boardid` = " . $lock_board_id . " AND `parentid` = '0' AND `id` = " . $tc_db->qstr($_GET['postid']) . "");
-							$board_class = new Board($lock_board_name);
-							$board_class->RegenerateAll();
-							unset($board_class);
 							$tpl_page .= _gettext('Thread successfully locked.');
-							management_addlogentry(_gettext('Locked thread') . ' #'. intval($_GET['postid']) . ' - /'. intval($_GET['board']) . '/', 5);
+							management_addlogentry(_gettext('Locked thread') . ' #'. intval($_GET['postid']) . ' - /'. $_GET['board'] . '/', 5);
 						}
+						$board_class = new Board($lock_board_name);
+						$board_class->RegenerateAll();
+						unset($board_class);
 					} else {
 						$tpl_page .= _gettext('Invalid thread ID. This may have been caused by the thread recently being deleted.');
 					}
